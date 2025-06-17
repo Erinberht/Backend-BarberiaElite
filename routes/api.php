@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\EmpleadoController;
+use App\Http\Controllers\Api\AgendaEmpleadoController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -60,3 +61,10 @@ Route::middleware(['auth:sanctum', 'rol:empleado'])->group(function () {
 });
 
 Route::apiResource('especialidades', App\Http\Controllers\Api\EspecialidadController::class);
+
+// Rutas para la agenda del empleado
+Route::middleware(['auth:sanctum', 'rol:empleado'])->group(function () {
+    Route::get('/empleado/mis-horarios', [AgendaEmpleadoController::class, 'misHorarios']);
+    Route::post('/empleado/horarios', [AgendaEmpleadoController::class, 'guardarHorario']);
+    Route::delete('/empleado/horarios/{id}', [AgendaEmpleadoController::class, 'eliminarHorario']);
+});
