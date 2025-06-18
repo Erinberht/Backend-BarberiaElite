@@ -233,7 +233,6 @@ class EmpleadoController extends Controller
             $citas = Cita::where('empleado_id', $empleado->id)
                 ->with(['servicios', 'cliente.usuario'])
                 ->orderBy('fecha', 'desc')
-                ->orderBy('hora', 'asc')
                 ->get();
 
             return response()->json($citas);

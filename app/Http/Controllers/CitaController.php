@@ -87,7 +87,6 @@ class CitaController extends Controller
             'cliente_id' => $cliente->id,
             'empleado_id' => $request->empleado_id,
             'fecha' => $request->fecha,
-            'hora' => $request->hora,
             'estado' => 'pendiente',
         ]);
 
